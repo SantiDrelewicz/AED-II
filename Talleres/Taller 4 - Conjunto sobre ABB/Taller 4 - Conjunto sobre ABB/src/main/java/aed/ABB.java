@@ -15,11 +15,12 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         Nodo izq;
         Nodo der;
         Nodo padre;
+
         Nodo(T v) {
-                    valor = v;
-                    izq = null;
-                    der = null;
-                    padre = null;
+            valor = v;
+            izq = null;
+            der = null;
+            padre = null;
         }
     }
 
@@ -52,8 +53,11 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         if (!this.pertenece(elem)) {
             Nodo nuevo = new Nodo(elem);
             Nodo actual = this.raiz;
-            if (actual == null) this.raiz = nuevo;
-            else this.insertarIterativo(actual, nuevo);
+            if (actual == null) {
+                this.raiz = nuevo;
+            } else {
+                this.insertarIterativo(actual, nuevo);
+            }
             this.cardinal ++;
         }
     }
@@ -63,12 +67,18 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         Nodo actual = this.raiz;
         while (actual != null) {
             padre_actual = actual;
-            if (nuevo.valor.compareTo(actual.valor) < 0) actual = actual.izq;
-            else actual = actual.der;
+            if (nuevo.valor.compareTo(actual.valor) < 0) {
+                actual = actual.izq;
+            } else {
+                actual = actual.der;
+            }
         }
         nuevo.padre = padre_actual;
-        if (nuevo.valor.compareTo(padre_actual.valor) < 0) padre_actual.izq = nuevo;
-        else padre_actual.der = nuevo;
+        if (nuevo.valor.compareTo(padre_actual.valor) < 0) {
+            padre_actual.izq = nuevo;
+        } else {
+            padre_actual.der = nuevo;
+        }
     }
 
     public boolean pertenece(T elem){
@@ -77,9 +87,13 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
 
     private boolean busquedaRecursiva(T elem, Nodo arbol) {
         if (arbol == null) return false;
-        else if (elem.compareTo(arbol.valor) == 0) return true;
-        else if (elem.compareTo(arbol.valor) < 0) return busquedaRecursiva(elem, arbol.izq);
-        else return busquedaRecursiva(elem, arbol.der);
+        if (elem.compareTo(arbol.valor) == 0) {
+            return true;
+        } else if (elem.compareTo(arbol.valor) < 0) {
+            return busquedaRecursiva(elem, arbol.izq);
+        } else {
+            return busquedaRecursiva(elem, arbol.der);
+        }
     }
 
     public void eliminar(T elem){
@@ -89,16 +103,20 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         if (elem.compareTo(nodo.valor) == 0 && nodo.izq == null && nodo.der == null) {
             this.raiz = null;
             this.cardinal -= 1;
-        } else eliminarRecursivo(elem, nodo_padre, nodo);
+        } else {
+            eliminarRecursivo(elem, nodo_padre, nodo);
+        }
     }
 
     public void eliminarRecursivo(T elem, Nodo arbol_padre, Nodo arbol) {
-        if (arbol == null) return; 
-        else if (elem.compareTo(arbol.valor) > 0) eliminarRecursivo(elem, arbol, arbol.der);
-        else if (elem.compareTo(arbol.valor) < 0) eliminarRecursivo(elem, arbol, arbol.izq);
-        else {
+        if (arbol == null) {
+            return; 
+        } else if (elem.compareTo(arbol.valor) > 0) {
+            eliminarRecursivo(elem, arbol, arbol.der);
+        } else if (elem.compareTo(arbol.valor) < 0) {
+            eliminarRecursivo(elem, arbol, arbol.izq);
+        } else {
             if (arbol.izq == null || arbol.der == null) { // Si tiene 0 o 1 hijos
-
                 Nodo hijo = null;
                 if (arbol.izq != null && arbol.der == null) hijo = arbol.izq;
                 if (arbol.izq == null && arbol.der != null) hijo = arbol.der; 
@@ -158,7 +176,6 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
             } else {
                 iter = null;
             }
-
         }
 
         public boolean haySiguiente() {            

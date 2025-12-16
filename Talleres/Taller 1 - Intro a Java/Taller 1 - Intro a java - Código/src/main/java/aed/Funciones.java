@@ -23,10 +23,8 @@ class Funciones {
 
     int factorialIterativo(int n) {
         int res = 1;
-        if (n != 0) {
-            for (int i = 1; i <= n; i++) {
-                res *= i;
-            }
+        for (int i = 1; i <= n; i++) {
+            res *= i;
         }
         return res;
     }
@@ -36,23 +34,19 @@ class Funciones {
         if (n == 0) {
             res = 1; 
         } else {
-            res = n*factorialIterativo(n-1);
+            res = n*factorialRecursivo(n-1);
         }
         return res;
     }
 
     boolean esPrimo(int n) {
-        return primo(n);
-    }
-
-    boolean primo(int n) {
-        int suma_1_si_divide = 0;
+        int cantDivisores = 0;
         for (int i = 1; i <= n; i++) {
             if (divideA(i,n)) {
-                suma_1_si_divide ++;
+                cantDivisores ++;
             }
         }
-        return suma_1_si_divide == 2;
+        return cantDivisores == 2;
     }
     
     int sumatoria(int[] numeros) {
@@ -68,6 +62,7 @@ class Funciones {
         for (int i = 0; i < numeros.length; i++) {
             if (numeros[i] == buscado) {
                 res = i;
+                break;
             }
         }
         return res;
@@ -75,7 +70,7 @@ class Funciones {
 
     boolean tienePrimo(int[] numeros) {
         for (int n : numeros) {
-            if (primo(n)) {
+            if (esPrimo(n)) {
                 return true;
             }
         }
@@ -94,11 +89,10 @@ class Funciones {
     boolean esPrefijo(String s1, String s2) {
         if (s1.length() > s2.length()) {
             return false;
-        } else {
-            for (int i = 0; i < s1.length(); i++) {
-                if (s1.charAt(i) != s2.charAt(i)) {
-                    return false;
-                }
+        }
+        for (int i = 0; i < s1.length(); i++) {
+            if (s1.charAt(i) != s2.charAt(i)) {
+                return false;
             }
         }
         return true;

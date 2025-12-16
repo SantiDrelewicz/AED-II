@@ -35,7 +35,7 @@ public class Recordatorio {
         boolean otroEsNull = (otro == null);
         boolean claseDistinta = otro.getClass() != this.getClass();
         if (otroEsNull || claseDistinta) {
-        return false;
+            return false;
         }
         // casting -> cambiar el tipo
         Recordatorio otroRecordatorio = (Recordatorio) otro;
