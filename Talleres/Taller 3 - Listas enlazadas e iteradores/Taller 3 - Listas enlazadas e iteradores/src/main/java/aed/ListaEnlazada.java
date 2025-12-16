@@ -19,7 +19,6 @@ public class ListaEnlazada<T> implements Secuencia<T> {
         primero = null;
         ultimo = null;
         largo = 0;
-
     }
 
     public int longitud() {
@@ -52,7 +51,6 @@ public class ListaEnlazada<T> implements Secuencia<T> {
         }
         ultimo = nuevo;
         largo += 1;
-        
     }
 
     public T obtener(int i) {

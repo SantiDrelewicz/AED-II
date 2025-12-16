@@ -14,7 +14,6 @@ public class BestEffort {
     private ArrayList<Integer> ciudadesMaxGanancia;
     private ArrayList<Integer> ciudadesMaxPerdida;
 
-
     private void actualizarIndicesEnGanancia(ArrayList<Integer> listaIndices){    // 
         for (int i : listaIndices){ // |listaIndices| operaciones O(1)
             trasladosPorGanancia.obtener(i).indiceGanancia = i; // O(1)
@@ -59,7 +58,6 @@ public class BestEffort {
         }
         cantTrasladosDespachados = 0;   // O(1)
         gananciaNetaTotal = 0;          // O(1)
-        
         // creamos dos arrays vacios los cuales van a contener las ciudades con mayor ganancia y perdidaa
         ciudadesMaxGanancia = new ArrayList<Integer>(); // O(1)
         ciudadesMaxPerdida = new ArrayList<Integer>();  // O(1) 
@@ -167,15 +165,16 @@ public class BestEffort {
             actualizarCiudadesConMayorPerdida(trasladoDespachado);
             actualizarBalanceOrigenDestino(trasladoDespachado);
 
-            actualizarIndicesEnSuperavit(superavit.modificarPosicion(
-                infoCiudades[trasladoDespachado.destino()].indiceSuperavit, 
-                infoCiudades[trasladoDespachado.destino()]
+            actualizarIndicesEnSuperavit(
+                superavit.modificarPosicion(
+                    infoCiudades[trasladoDespachado.destino()].indiceSuperavit, 
+                    infoCiudades[trasladoDespachado.destino()]
                 )
             );
-
-            actualizarIndicesEnSuperavit(superavit.modificarPosicion(
-                infoCiudades[trasladoDespachado.origen()].indiceSuperavit, 
-                infoCiudades[trasladoDespachado.origen()]
+            actualizarIndicesEnSuperavit(
+                superavit.modificarPosicion(
+                    infoCiudades[trasladoDespachado.origen()].indiceSuperavit, 
+                    infoCiudades[trasladoDespachado.origen()]
                 )
             );
 
